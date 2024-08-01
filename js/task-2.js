@@ -1,11 +1,11 @@
 class Storage {
   #items;
 
-  constructor() {
-    this.#items = [];
+  constructor(initialItems) {
+    this.#items = initialItems;
   }
 
-  getItems() {
+  getItems(params) {
     return this.#items;
   }
 
@@ -13,7 +13,12 @@ class Storage {
     this.#items.push(newItem);
   }
 
-  removeItem(itemToRemove) {}
+  removeItem(itemToRemove) {
+    if (this.#items.includes(itemToRemove)) {
+      const itemToRemoveIndex = this.#items.indexOf(itemToRemove);
+      this.#items.splice(itemToRemoveIndex, 1);
+    }
+  }
 }
 
 const storage = new Storage(['Nanitoids', 'Prolonger', 'Antigravitator']);
